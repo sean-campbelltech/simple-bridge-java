@@ -30,7 +30,8 @@ public abstract class CarInsurance {
 
     // operation
     public BigDecimal calculatePremium() {
-        return getPremium().multiply(new BigDecimal(1 - discount.getDiscount() / 100));
+        BigDecimal normalPrice = getPremium();
+        return normalPrice.subtract(normalPrice.multiply(BigDecimal.valueOf(discount.getDiscount()).divide(BigDecimal.valueOf(100))));
     }
 
     protected abstract BigDecimal getPremium();
